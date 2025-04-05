@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AWS Account Colorizer</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>AWS Account Colorizer</h1>
+    <div class="form-container">
+      <input type="text" id="aliasInput" placeholder="AWS Account Alias" />
+      <input type="color" id="colorInput" value="#add8e6" />
+      <!-- Default light blue -->
+      <button id="addButton">Add/Update</button>
+    </div>
+    <hr />
+    <h2>Configured Aliases</h2>
+    <ul id="aliasList">
+      <!-- List items will be added here by JavaScript -->
+    </ul>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

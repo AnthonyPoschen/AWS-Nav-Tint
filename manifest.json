@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "AWS Nav Tint",
+  "version": "1.0",
+  "description": "Changes the AWS Console nav bar color based on the account alias.",
+  "permissions": ["storage", "cookies", "tabs"],
+  "host_permissions": [
+    "*://*.console.aws.amazon.com/*",
+    "*://*.console.aws.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.console.aws.amazon.com/*", "*://*.console.aws.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

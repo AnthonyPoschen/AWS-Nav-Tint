@@ -1,0 +1,93 @@
+body {
+  font-family: sans-serif;
+  width: 350px; /* Adjust width as needed */
+  padding: 10px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.form-container {
+  display: flex;
+  gap: 5px; /* Spacing between elements */
+  margin-bottom: 15px;
+  align-items: center; /* Vertically align items */
+}
+
+#aliasInput {
+  flex-grow: 1; /* Allow alias input to take available space */
+  padding: 5px;
+}
+
+#colorInput {
+  min-width: 40px; /* Ensure color picker has some width */
+  height: 30px;
+  padding: 0 2px; /* Minimal padding */
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#addButton {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 15px 0;
+}
+
+#aliasList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px; /* Limit height and make scrollable */
+  overflow-y: auto;
+}
+
+#aliasList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+#aliasList li:last-child {
+  border-bottom: none;
+}
+
+.color-preview {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  vertical-align: middle; /* Align with text */
+}
+
+.alias-name {
+  flex-grow: 1; /* Take available space */
+  margin-right: 10px; /* Space before delete button */
+  word-break: break-all; /* Prevent long aliases from breaking layout */
+}
+
+.delete-button {
+  background-color: #ffdddd;
+  border: 1px solid #ffaaaa;
+  color: #d8000c;
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.delete-button:hover {
+  background-color: #ffcccc;
+}
