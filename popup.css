@@ -1,7 +1,10 @@
+/* Default light mode styles */
 body {
   font-family: sans-serif;
   width: 350px; /* Adjust width as needed */
   padding: 10px;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 h1,
@@ -90,4 +93,47 @@ hr {
 
 .delete-button:hover {
   background-color: #ffcccc;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  #colorInput {
+    border: 1px solid #555;
+  }
+
+  hr {
+    background: #555;
+  }
+
+  #aliasList li {
+    border-bottom: 1px solid #444;
+  }
+
+  .color-preview {
+    border: 1px solid #555;
+  }
+
+  .delete-button {
+    background-color: #ff4444;
+    border: 1px solid #ff2222;
+    color: #ffdddd;
+  }
+
+  .delete-button:hover {
+    background-color: #ff6666;
+  }
+  input {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+  }
+
+  input::placeholder {
+    color: #aaa;
+  }
 }
