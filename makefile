@@ -7,10 +7,10 @@ ZIP_FILE = "$(EXTENSION_NAME).zip"
 SOURCES = manifest.json popup.html popup.js popup.css icons/*
 
 # Default target
-all: $(ZIP_FILE)
+all: build
 
 # Create the ZIP file
-$(ZIP_FILE): $(SOURCES)
+build: $(SOURCES)
 	@echo "Creating ZIP file: $(ZIP_FILE)"
 	@zip -r $(ZIP_FILE) $(SOURCES)
 	@echo "ZIP file created successfully!"

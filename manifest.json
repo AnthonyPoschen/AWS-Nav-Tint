@@ -1,13 +1,9 @@
 {
   "manifest_version": 3,
   "name": "AWS Nav Tint",
-  "version": "1.0",
-  "description": "Changes the AWS Console nav bar color based on the account alias.",
-  "permissions": ["storage", "cookies", "tabs"],
-  "host_permissions": [
-    "*://*.console.aws.amazon.com/*",
-    "*://*.console.aws.com/*"
-  ],
+  "version": "1.0.1",
+  "description": "Changes the AWS Console nav bar color based on the account. You can color code your prod / dev with this!",
+  "permissions": ["storage", "cookies"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
