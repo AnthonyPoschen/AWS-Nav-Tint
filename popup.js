@@ -60,10 +60,27 @@ async function prepopulateAliasFromCurrentTab() {
           );
         }
       } else {
-        // console.log("AWS Account Colorizer Popup: aws-userInfo cookie not found on current tab."); // Optional debug
+        const backupCookie = await chrome.cookies.get({
+          url: currentTab.url,
+          name: "awsc-settings-info",
+        });
+        if (backupCookie?.value) {
+          try {
+            const decodedValue = decodeURIComponent(backupCookie.value);
+            const userInfo = decodedValue;
+            aliasInput.value = userInfo.split("-")[0];
+            console.log(
+              "AWS Account Colorizer Popup: Pre-populated alias from backup cookie:",
+              userInfo,
+            );
+          } catch (parseError) {
+            console.warn(
+              "AWS Account Colorizer Popup: Could not parse awsc-settings-info cookie.",
+              parseError,
+            );
+          }
+        }
       }
-    } else {
-      // console.log("AWS Account Colorizer Popup: Not on an AWS Console tab."); // Optional debug
     }
   } catch (error) {
     console.error(

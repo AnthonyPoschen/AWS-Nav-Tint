@@ -20,16 +20,25 @@ async function applyAccountColor() {
   }
   const originalBgColor = navElement.dataset.originalBgColor;
 
-  // 2. Read the 'aws-userInfo' cookie (Corrected Case)
+  const cookieName = "aws-userInfo";
+  const backupCookieName = "awsc-settings-info";
+  var usedBackup = false;
+
   const cookieString = document.cookie;
   const cookies = cookieString.split(";");
-  const userInfoCookieString = cookies.find((cookiePart) => {
+  var userInfoCookieString = cookies.find((cookiePart) => {
     const trimmedPart = cookiePart.trim();
-    return trimmedPart.startsWith("aws-userInfo="); // Corrected case
+    return trimmedPart.startsWith(`${cookieName}=`); // Corrected case
   });
+  if (!userInfoCookieString) {
+    userInfoCookieString = cookies.find((cookiePart) => {
+      const trimmedPart = cookiePart.trim();
+      return trimmedPart.startsWith(`${backupCookieName}=`); // Corrected case
+    });
+    usedBackup = true;
+  }
 
   if (!userInfoCookieString) {
-    // console.log("AWS Account Colorizer: 'aws-userInfo' cookie not found."); // Optional: uncomment for specific debugging
     navElement.style.backgroundColor = originalBgColor; // Reset if cookie disappears
     return;
   }
@@ -37,17 +46,22 @@ async function applyAccountColor() {
   let currentUserAlias = null;
   try {
     const trimmedUserInfoCookie = userInfoCookieString.trim();
-    const encodedUserInfo = trimmedUserInfoCookie.split("=")[1];
+    var encodedUserInfo = trimmedUserInfoCookie.split("=")[1];
 
     if (!encodedUserInfo) {
-      // console.error("AWS Account Colorizer: Found 'aws-userInfo=' but value is empty."); // Keep errors if needed
       navElement.style.backgroundColor = originalBgColor;
       return;
     }
 
     const decodedUserInfo = decodeURIComponent(encodedUserInfo);
-    const userInfo = JSON.parse(decodedUserInfo);
-    currentUserAlias = userInfo.alias; // Assuming 'alias' is the correct field
+    var userInfo;
+    if (usedBackup) {
+      userInfo = decodedUserInfo.split("-")[0];
+      currentUserAlias = userInfo;
+    } else {
+      userInfo = JSON.parse(decodedUserInfo);
+      currentUserAlias = userInfo.alias; // Assuming 'alias' is the correct field
+    }
 
     if (!currentUserAlias) {
       // console.log("AWS Account Colorizer: 'alias' field not found in cookie data."); // Optional debug
@@ -56,7 +70,7 @@ async function applyAccountColor() {
     }
   } catch (error) {
     console.error(
-      "AWS Account Colorizer: Error parsing 'aws-userInfo' cookie:",
+      `AWS Account Colorizer: Error parsing cookie:`,
       error,
       "Cookie part:",
       userInfoCookieString,
