@@ -4,7 +4,7 @@
 # Variables
 EXTENSION_NAME = $(shell jq -r '.name' manifest.json)
 ZIP_FILE = "$(EXTENSION_NAME).zip"
-SOURCES = manifest.json popup.html popup.js popup.css icons/*
+SOURCES = manifest.json content.js popup.html popup.js popup.css icons/*
 
 # Default target
 all: build
